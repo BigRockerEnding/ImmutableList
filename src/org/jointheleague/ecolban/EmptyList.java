@@ -18,42 +18,47 @@ public class EmptyList<T> extends ListNode<T> {
 
     @Override
     public boolean isEmpty() {
-        //1. Add a return statement
+    	return true;
     }
 
     @Override
     public ListNode<T> remove(T e) {
-        //2. Add a return statement
+    	return this;
     }
 
     @Override
     public int length() {
-        //3. Add a return statement
+    	return 0;
     }
 
     @Override
     public ListNode<T> push(T e) {
-        //4. Add a constructor to the ListNode class first, then add a return statement
+    	return append(e);
     }
 
     @Override
     public ListNode<T> append(T e) {
-        //5. Add a constructor to the ListNode class first, then add a return statement
+    	return new ListNode<T>(e, this);
     }
 
     @Override
     public T head() {
-        //6. Throw an appropriate exception
+    	throw new NoSuchElementException("EmptyList has no head.");
     }
 
     @Override
     public ListNode<T> tail() {
-        //7. Throw an appropriate exception
+    	throw new NoSuchElementException("EmptyList has no tail.");
+    }
+    
+    @Override
+    String getStringForm() {
+    	return "";
     }
     
     @Override
     public String toString() {
-        //8. Complete Hint: Read the javadoc!
+    	return super.toString();
     }
     
     @Override
