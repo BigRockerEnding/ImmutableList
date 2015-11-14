@@ -52,13 +52,8 @@ public class EmptyList<T> extends ListNode<T> {
     }
     
     @Override
-    String getStringForm() {
-    	return "";
-    }
-    
-    @Override
     public String toString() {
-    	return super.toString();
+    	return "()";
     }
     
     @Override

@@ -117,6 +117,7 @@ public class ImmutableListTest extends TestCase {
         assertEquals("(one three)", lst4.toString());
         assertEquals("(zero one three)", lst5.toString());
         assertEquals("(one two three four four five)", lst6.toString());
+        assertEquals(1, lst6.countOccurences("five"));
         assertEquals("(one two three)", lst7.toString());
         assertEquals("two", lst1.head());
         assertEquals("zero", lst5.head());

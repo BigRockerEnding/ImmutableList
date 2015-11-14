@@ -7,6 +7,10 @@ public class ListNode<T> {
 	private final int length;
 
 	public ListNode(T head, ListNode<T> tail) {
+		
+		if (tail == null) {
+			throw new IllegalArgumentException("Tail cannot be null.");
+		}
 
 		this.head = head;
 		this.tail = tail;
@@ -54,9 +58,18 @@ public class ListNode<T> {
 		return remove(e, c);
 	}
 
-	private int countOccurences(T e) {
+	public int countOccurences(T e) {
+		
+		if (tail.isEmpty()) {
+			
+			if (e == null ? head == null : e.equals(head)) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
 
-		if (head.equals(e)) {
+		if (e == null ? head == null : e.equals(head)) {
 			return tail.countOccurences(e) + 1;
 		} else {
 			return tail.countOccurences(e);
@@ -70,7 +83,7 @@ public class ListNode<T> {
 			return this;
 		}
 
-		if (head == e) {
+		if (e == null ? head == null : e.equals(head)) {
 			return tail.remove(e, objectsLeft - 1);
 		} else {
 			return new ListNode<T>(head, tail.remove(e, objectsLeft));
@@ -117,6 +130,26 @@ public class ListNode<T> {
 	public ListNode<T> tail() {
 		return tail;
 	}
+	
+	private String getStringForm() {
+		
+		if (head == null) {
+			
+			if (!tail.isEmpty()) {
+				return "null " + tail.getStringForm();
+			} else {
+				return "null";
+			}
+			
+		}
+		
+		if (tail.isEmpty()) {
+			return head.toString();
+		}
+		
+		return head.toString() + " " + tail.getStringForm();
+		
+	}
 
 	/**
 	 * An empty list has a string representation: "()" whereas a non-empty list has a string representation
@@ -124,12 +157,7 @@ public class ListNode<T> {
 	 * 
 	 * @return the string representation of the list
 	 */
-	
-	String getStringForm() {
-		
-		return head.toString() + " " + tail.getStringForm();
-		
-	}
+
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -158,13 +186,11 @@ public class ListNode<T> {
 			return false;
 		}
 		
-		if (!this.head.equals(that.head)) {
+		if (!(this.head == null ? that.head == null : this.head.equals(that.head))) {
 			return false;
 		}
 		
-		return this.tail.equals(that.tail.equals(other));
-		// 11. Complete. List are equal if they have the same length and
-		// elements are pairwise equal.
+		return this.tail.equals(that.tail);
 
 	}
 
