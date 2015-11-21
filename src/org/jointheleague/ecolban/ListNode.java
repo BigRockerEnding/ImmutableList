@@ -1,12 +1,12 @@
 package org.jointheleague.ecolban;
 
-public class ListNode<T> {
+public class ListNode<T> implements ImmutableList<T> {
 
 	private final T head;
-	private final ListNode<T> tail;
+	private final ImmutableList<T> tail;
 	private final int length;
 
-	public ListNode(T head, ListNode<T> tail) {
+	public ListNode(T head, ImmutableList<T> tail) {
 		
 		if (tail == null) {
 			throw new IllegalArgumentException("Tail cannot be null.");
@@ -68,11 +68,11 @@ public class ListNode<T> {
 				return 0;
 			}
 		}
-
+		
 		if (e == null ? head == null : e.equals(head)) {
-			return tail.countOccurences(e) + 1;
+			return ((ListNode<T>)tail).countOccurences(e) + 1;
 		} else {
-			return tail.countOccurences(e);
+			return ((ListNode<T>)tail).countOccurences(e);
 		}
 
 	}
@@ -84,9 +84,9 @@ public class ListNode<T> {
 		}
 
 		if (e == null ? head == null : e.equals(head)) {
-			return tail.remove(e, objectsLeft - 1);
+			return ((ListNode<T>)tail).remove(e, objectsLeft - 1);
 		} else {
-			return new ListNode<T>(head, tail.remove(e, objectsLeft));
+			return new ListNode<T>(head, ((ListNode<T>)tail).remove(e, objectsLeft));
 		}
 	}
 
@@ -127,7 +127,7 @@ public class ListNode<T> {
 	 * @throws NoSuchElementException
 	 *             if the list is empty
 	 */
-	public ListNode<T> tail() {
+	public ImmutableList<T> tail() {
 		return tail;
 	}
 	
@@ -136,7 +136,7 @@ public class ListNode<T> {
 		if (head == null) {
 			
 			if (!tail.isEmpty()) {
-				return "null " + tail.getStringForm();
+				return "null " + ((ListNode<T>)tail).getStringForm();
 			} else {
 				return "null";
 			}
@@ -147,7 +147,7 @@ public class ListNode<T> {
 			return head.toString();
 		}
 		
-		return head.toString() + " " + tail.getStringForm();
+		return head.toString() + " " + ((ListNode<T>)tail).getStringForm();
 		
 	}
 

@@ -2,7 +2,7 @@ package org.jointheleague.ecolban;
 
 import java.util.NoSuchElementException;
 
-public class EmptyList<T> extends ListNode<T> {
+public class EmptyList<T> implements ImmutableList<T> {
     
     @SuppressWarnings("rawtypes")
     private static EmptyList instance = new EmptyList();
@@ -22,7 +22,7 @@ public class EmptyList<T> extends ListNode<T> {
     }
 
     @Override
-    public ListNode<T> remove(T e) {
+    public ImmutableList<T> remove(T e) {
     	return this;
     }
 
@@ -32,12 +32,12 @@ public class EmptyList<T> extends ListNode<T> {
     }
 
     @Override
-    public ListNode<T> push(T e) {
+    public ImmutableList<T> push(T e) {
     	return append(e);
     }
 
     @Override
-    public ListNode<T> append(T e) {
+    public ImmutableList<T> append(T e) {
     	return new ListNode<T>(e, this);
     }
 
